@@ -1,6 +1,10 @@
 # Windows Safe Drive Eject & HDD Spin-Down Tool
 
-[English](https://www.google.com/search?q=%23english) | [中文说明](https://www.google.com/search?q=%23%E4%B8%AD%E6%96%87%E8%AF%B4%E6%98%8E)
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-blue.svg)](https://microsoft.com/windows)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Dependencies](https://img.shields.io/badge/Dependencies-Zero%20(Native)-brightgreen.svg)](#)
+
+[English](#english) | [中文说明](#中文说明)
 
 ---
 
@@ -23,25 +27,19 @@ A zero-dependency Windows utility that safely ejects external storage devices (U
 ### How to Use
 
 #### Method 1: Interactive Mode (Double-Click)
-
 1. Double-click `EjectDrive.bat`.
 2. Enter the target drive letter (e.g., `E` or `F`) and press `Enter`.
-* *If no letter is entered, it defaults to drive `E:`.*
-
-
+   * *If no letter is entered, it defaults to drive `E:`.*
 3. When the green success banner appears, turn off the enclosure power button or unplug the USB cable.
 
 #### Method 2: Command Line Mode (CLI / Script Automation)
-
 Pass the drive letter directly as an argument:
-
 ```cmd
 :: Eject drive E:
 EjectDrive.bat E
 
 :: Eject drive F: (colon is optional)
 EjectDrive.bat F:
-
 ```
 
 ---
@@ -57,21 +55,17 @@ EjectDrive.bat F:
 ### Troubleshooting & FAQ
 
 * **"Drive is currently locked by a process / 弹出失败：设备正被占用"**:
-* Ensure no media players, IDEs, code editors, or transfer tools (e.g., FastCopy) are accessing the drive.
-* If large files were just written, wait 5–10 seconds for antivirus background scanning to complete, then retry.
-
-
+  * Ensure no media players, IDEs, code editors, or transfer tools (e.g., FastCopy) are accessing the drive.
+  * If large files were just written, wait 5–10 seconds for antivirus background scanning to complete, then retry.
 * **Encoding Requirements**:
-* If editing the script manually in Notepad, save the file with **`ANSI`** encoding to prevent Windows Command Prompt (`cmd.exe`) character misinterpretation.
-
-
+  * If editing the script manually in Notepad, save the file with **`ANSI`** encoding to prevent Windows Command Prompt (`cmd.exe`) character misinterpretation.
 
 ---
 
 ### Return Codes
 
 | Exit Code | Description |
-| --- | --- |
+| :---: | :--- |
 | `0` | **Success**: Drive safely ejected, motor spun down. |
 | `1` | **Not Found**: Target drive letter does not exist or is already disconnected. |
 | `2` | **Aborted**: Target drive is a system/boot volume. Operation blocked. |
@@ -81,7 +75,7 @@ EjectDrive.bat F:
 
 ## 中文说明
 
-一个免安装、零依赖的 Windows 原生批处理工具。用于安全弹出各类外置存储（移动硬盘盒、外置机械/固态硬盘、U盘），并在切断连接前向机械硬盘发送底层马达停转（SCSI Spin-Down）与磁头归位指令。
+一个免安装、零依赖的 Windows 原生批处理工具。用于安全弹出各类外置存储（移动硬盘盒、外置机械/固态硬盘、U盘），并在切断连接前向机械硬盘发送**底层马达停转（SCSI Spin-Down）**与磁头归位指令。
 
 ### 核心特性
 
@@ -98,25 +92,19 @@ EjectDrive.bat F:
 ### 使用方法
 
 #### 方式一：交互模式（直接双击）
-
 1. 双击运行 `EjectDrive.bat`。
 2. 在提示行输入需要弹出的盘符（如 `E` 或 `F`）后按回车。
-* *直接按回车将默认选择 `E` 盘。*
-
-
+   * *直接按回车将默认选择 `E` 盘。*
 3. 看到绿色成功提示且硬盘停止震动后，即可按下硬盘盒电源按键或拔出 USB 数据线。
 
 #### 方式二：命令行模式（终端传参 / 脚本调用）
-
 在终端或 CMD 中传入盘符参数：
-
 ```cmd
 :: 弹出 E 盘
 EjectDrive.bat E
 
 :: 弹出 F 盘（带不带冒号均可）
 EjectDrive.bat F:
-
 ```
 
 ---
@@ -132,21 +120,17 @@ EjectDrive.bat F:
 ### 常见问题与注意事项
 
 * **提示“弹出失败：设备正被占用”**：
-* 请确认已关闭所有打开该盘文件的程序（如看图软件、视频播放器、FastCopy 等）。
-* 若刚刚完成海量小文件写入，Windows Defender 等杀毒软件可能正在后台进行实时扫描，请等待 5~10 秒后重新运行脚本。
-
-
+  * 请确认已关闭所有打开该盘文件的程序（如看图软件、视频播放器、FastCopy 等）。
+  * 若刚刚完成海量小文件写入，Windows Defender 等杀毒软件可能正在后台进行实时扫描，请等待 5~10 秒后重新运行脚本。
 * **文本编码说明**：
-* 如使用记事本手动编辑该脚本，请务必在“另存为”时将编码选择为 **`ANSI`**，避免 Windows CMD 解析中文字符时产生语法错位。
-
-
+  * 如使用记事本手动编辑该脚本，请务必在“另存为”时将编码选择为 **`ANSI`**，避免 Windows CMD 解析中文字符时产生语法错位。
 
 ---
 
 ### 退出代码（Exit Codes）
 
 | 代码 | 说明 |
-| --- | --- |
+| :---: | :--- |
 | `0` | **操作成功**：设备已安全弹出，机械硬盘马达已完全停转。 |
 | `1` | **未找到设备**：目标盘符不存在或已被拔出。 |
 | `2` | **安全拦截**：目标盘符为系统启动盘/引导盘，操作已强制终止。 |
@@ -156,4 +140,4 @@ EjectDrive.bat F:
 
 ## License
 
-This project is licensed under the [MIT License](https://www.google.com/search?q=LICENSE).
+This project is licensed under the [MIT License](LICENSE).
